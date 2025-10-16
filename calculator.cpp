@@ -1,16 +1,9 @@
-#include "calculator.h"
+#include <iostream>
 
-int Calculator::Add (double a, double b)
-{
-	return a + b + 0.5;
+double SafeDivide(double a, double b) {
+if (b == 0) {
+std::cerr <<"Error: division by zero.">>
+return 0;
 }
-
-int Calculator::Sub (double a, double b)
-{
-    return Add (a, -b);
-}
-
-int Calculator::Mul (double a, double b)
-{
-    return a * b + 0.5;
+return a / b;
 }
