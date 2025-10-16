@@ -1,0 +1,39 @@
+From c7469468c4a8f5207ebc2850e84639d17c1b332d Mon Sep 17 00:00:00 2001
+From: xczcv <alnazarchuk47@gmail.com>
+Date: Thu, 16 Oct 2025 20:22:12 +0000
+Subject: [PATCH 2/2] castom fix: add SafeDivide function with zero check
+
+---
+ calculator.cpp | 19 ++++++-------------
+ 1 file changed, 6 insertions(+), 13 deletions(-)
+
+diff --git a/calculator.cpp b/calculator.cpp
+index 7e4c545..49d0210 100644
+--- a/calculator.cpp
++++ b/calculator.cpp
+@@ -1,16 +1,9 @@
+-#include "calculator.h"
++#include <iostream>
+ 
+-int Calculator::Add (double a, double b)
+-{
+-	return a + b + 0.5;
++double SafeDivide(double a, double b) {
++if (b == 0) {
++std::cerr <<"Error: division by zero.">>
++return 0;
+ }
+-
+-int Calculator::Sub (double a, double b)
+-{
+-    return Add (a, -b);
+-}
+-
+-int Calculator::Mul (double a, double b)
+-{
+-    return a * b + 0.5;
++return a / b;
+ }
+-- 
+2.43.0
+

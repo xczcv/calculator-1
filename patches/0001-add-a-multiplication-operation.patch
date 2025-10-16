@@ -1,0 +1,136 @@
+From de55795a63e57d264cc05501c0240995c1816678 Mon Sep 17 00:00:00 2001
+From: Sergii Piatakov <sergii.piatakov@globallogic.com>
+Date: Thu, 15 Nov 2018 15:43:25 +0200
+Subject: [PATCH 1/2] add a multiplication operation
+
+Add a member-function which performs multiplication of two float point
+digits.
+
+Signed-off-by: Sergii Piatakov <sergii.piatakov@globallogic.com>
+---
+ ...-fix-truncation-error-by-Oleksandr-N.patch | 30 ++++++++++++
+ ...abs-instead-of-spaces-by-Oleksandr-N.patch | 47 +++++++++++++++++++
+ calculator.cpp                                |  5 ++
+ calculator.h                                  |  2 +
+ 4 files changed, 84 insertions(+)
+ create mode 100644 0001-fix-truncation-error-by-Oleksandr-N.patch
+ create mode 100644 0002-formatting-use-tabs-instead-of-spaces-by-Oleksandr-N.patch
+
+diff --git a/0001-fix-truncation-error-by-Oleksandr-N.patch b/0001-fix-truncation-error-by-Oleksandr-N.patch
+new file mode 100644
+index 0000000..6ad6152
+--- /dev/null
++++ b/0001-fix-truncation-error-by-Oleksandr-N.patch
+@@ -0,0 +1,30 @@
++From ee3e323e5d1d49745c56aa2cf0acfc0fa0502ffd Mon Sep 17 00:00:00 2001
++From: Sergii Piatakov <sergii.piatakov@globallogic.com>
++Date: Thu, 15 Nov 2018 15:28:04 +0200
++Subject: [PATCH 1/2] fix truncation error (by Oleksandr N)
++
++To convert float to integer the truncation is performed, but the
++rounding is expected.
++
++Test: Add (4.9, 4.9) should return 10.
++Signed-off-by: Sergii Piatakov <sergii.piatakov@globallogic.com>
++---
++ calculator.cpp | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/calculator.cpp b/calculator.cpp
++index b91afea..d93e35b 100644
++--- a/calculator.cpp
+++++ b/calculator.cpp
++@@ -2,7 +2,7 @@
++ 
++ int Calculator::Add (double a, double b)
++ {
++-    return a + b;
+++	return a + b + 0.5;
++ }
++ 
++ int Calculator::Sub (double a, double b)
++-- 
++2.43.0
++
+diff --git a/0002-formatting-use-tabs-instead-of-spaces-by-Oleksandr-N.patch b/0002-formatting-use-tabs-instead-of-spaces-by-Oleksandr-N.patch
+new file mode 100644
+index 0000000..f8b5e5a
+--- /dev/null
++++ b/0002-formatting-use-tabs-instead-of-spaces-by-Oleksandr-N.patch
+@@ -0,0 +1,47 @@
++From 9785ae7ed297a5c3c82788038404596806d15a7f Mon Sep 17 00:00:00 2001
++From: Sergii Piatakov <sergii.piatakov@globallogic.com>
++Date: Thu, 15 Nov 2018 15:26:35 +0200
++Subject: [PATCH 2/2] formatting: use tabs instead of spaces (by Oleksandr N)
++
++Signed-off-by: Sergii Piatakov <sergii.piatakov@globallogic.com>
++---
++ calculator.cpp | 3 ++-
++ calculator.h   | 6 +++---
++ 2 files changed, 5 insertions(+), 4 deletions(-)
++
++diff --git a/calculator.cpp b/calculator.cpp
++index d93e35b..9699527 100644
++--- a/calculator.cpp
+++++ b/calculator.cpp
++@@ -3,9 +3,10 @@
++ int Calculator::Add (double a, double b)
++ {
++ 	return a + b + 0.5;
+++
++ }
++ 
++ int Calculator::Sub (double a, double b)
++ {
++-    return Add (a, -b);
+++	return Add (a, -b);
++ }
++diff --git a/calculator.h b/calculator.h
++index 3740907..d59d596 100644
++--- a/calculator.h
+++++ b/calculator.h
++@@ -3,9 +3,9 @@
++ 
++ class Calculator
++ {
++-    public:
++-        int Add (double, double);
++-        int Sub (double, double);
+++	public:
+++		int Add (double, double);
+++		int Sub (double, double);
++ };
++ 
++ #endif//CALCULATOR_H
++-- 
++2.43.0
++
+diff --git a/calculator.cpp b/calculator.cpp
+index d93e35b..7e4c545 100644
+--- a/calculator.cpp
++++ b/calculator.cpp
+@@ -9,3 +9,8 @@ int Calculator::Sub (double a, double b)
+ {
+     return Add (a, -b);
+ }
++
++int Calculator::Mul (double a, double b)
++{
++    return a * b + 0.5;
++}
+diff --git a/calculator.h b/calculator.h
+index 3740907..371ce7f 100644
+--- a/calculator.h
++++ b/calculator.h
+@@ -6,6 +6,8 @@ class Calculator
+     public:
+         int Add (double, double);
+         int Sub (double, double);
++        int Add (int, int);
++        int Mul (double, double);
+ };
+ 
+ #endif//CALCULATOR_H
+-- 
+2.43.0
+
